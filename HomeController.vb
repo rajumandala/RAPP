@@ -49,6 +49,28 @@ Namespace BlogUploader.Controllers
 
             Return Nothing
         End Function
+        
+        
+        <HttpPost>
+        Public Function Index(ByVal postedFile As HttpPostedFileBase) As ActionResult
+            Dim emp As Employee = Nothing
+
+            Try
+
+                If postedFile IsNot Nothing Then
+                    Dim formatter As BinaryFormatter = New BinaryFormatter()
+                    Dim obj As Object = formatter.Deserialize(postedFile.InputStream)
+                    emp = CType(obj, Employee)
+                Else
+                    ViewBag.Result = "No file uploaded"
+                End If
+
+            Catch e As Exception
+                ViewBag.Result = "Error in deserializing data"
+            End Try
+
+            Return View(emp)
+        End Function
     End Class
 End Namespace
 
