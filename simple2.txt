@@ -1,0 +1,16 @@
+XMLReader reader = XMLReaderFactory.createXMLReader();
+            reader.setFeature(DISALLOW_DOCTYPE_DECL, false);
+            reader.setFeature(EXTERNAL_GENERAL_ENTITIES, true);
+            reader.setFeature(EXTERNAL_PARMETER_ENTITIES, true);
+
+private String[] features = {
+            EXTERNAL_GENERAL_ENTITIES,
+            EXTERNAL_PARMETER_ENTITIES,
+            LOAD_EXTERNAL_DTD
+    };
+    
+XMLReader reader = XMLReaderFactory.createXMLReader();
+            reader.setFeature(DISALLOW_DOCTYPE_DECL, true);
+            for(String feature : features) {
+                reader.setFeature(feature, false);
+            }    
