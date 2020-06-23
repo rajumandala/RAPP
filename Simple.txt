@@ -1,0 +1,11 @@
+ObjectInputStream objectInputStream =
+                    new ObjectInputStream(in);
+            UserInfoDto userInfoDto = (UserInfoDto)
+                    objectInputStream.readObject();
+                    
+ValidatingObjectInputStream validatingObjectInputStream =
+                    new ValidatingObjectInputStream(cipherInputStream);
+            validatingObjectInputStream.accept(UserInfoDto.class);
+            UserInfoDto userInfoDto = (UserInfoDto)
+                    validatingObjectInputStream.readObject();
+            validatingObjectInputStream.close();                    
